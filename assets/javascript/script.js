@@ -1,4 +1,13 @@
-
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyA4SFyU0iSKGUuTzMq48ZDZ9sQXm1XAOOI",
+  authDomain: "trains-aa3f2.firebaseapp.com",
+  databaseURL: "https://trains-aa3f2.firebaseio.com",
+  projectId: "trains-aa3f2",
+  storageBucket: "trains-aa3f2.appspot.com",
+  messagingSenderId: "847478198978"
+};
+firebase.initializeApp(config);
 
 $("#submit").on("click", function(event) {
  // Prevent form from submitting
