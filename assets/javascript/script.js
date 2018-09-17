@@ -20,7 +20,7 @@ console.log(trainFreq);
  // Creates local "temporary" object for holding employee data
  var newTrain = {
    name: trainName,
-   role: trainDest,
+   dest: trainDest,
    time: trainTime,
    freq: trainFreq
  };
@@ -30,7 +30,7 @@ console.log(trainFreq);
 
  // Logs everything to console
  console.log(newTrain.name);
- console.log(newTrain.role);
+ console.log(newTrain.dest);
  console.log(newTrain.time);
  console.log(newTrain.freq);
 
@@ -40,6 +40,22 @@ console.log(trainFreq);
  $("#name-input").val("");
  $("#dest-input").val("");
  $("#time-input").val("");
- $("#freq-inputt").val("");
+ $("#freq-input").val("");
+
+
+
+//create table tow, and add train values
+ var tr = $("<tr>")
+ var trainDataName = $("<td>").text(newTrain.name)
+ var trainDataDest = $("<td>").text(newTrain.dest)
+ var trainDataTime = $("<td>").text(newTrain.time)
+
+ var trainArrival = $("<td>").text("needs func ")
+ var trainMinutesAway = $("<td>").text("needs func")
+
+ tr.append(trainDataName).append(trainDataDest).append(trainDataTime).append(trainArrival).append(trainMinutesAway)
+ $("#table-body").append(tr)
 });
+
+
 
