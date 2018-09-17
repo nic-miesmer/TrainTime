@@ -71,11 +71,35 @@ dataRef.ref().on("child_added", function(childSnapshot) {
  var trainDataName = $("<td>").text(childSnapshot.val().name)
  var trainDataDest = $("<td>").text(childSnapshot.val().dest)
  var trainDataTime = $("<td>").text(childSnapshot.val().time)
+ var trainDataFreq = $("<td>").text(childSnapshot.val().freq)
+
+
+//Next Train
+//first train time
+
+
+
+//  var firstTime = dateFns.setHours(dateFns.setMinutes(new Date(), 30), 03);
+//       var format = dateFns.format
+
+//       console.log(format(firstTime, 'HH:mm'))
+//       // First Time (pushed back 1 year to make sure it comes before current time)
+//       var firstTimeConverted = format(dateFns.subYears(firstTime, 1), 'HH:mm');
+//       console.log(firstTimeConverted);
+
+//       // Current Time
+//       var currentTime = new Date();
+//       console.log("CURRENT TIME: " + format(currentTime, "hh:mm"));
+
+//       var trainTime = new Date();
+//       trainTime = trainDataTime;
+//       console.log("Train Time: " + format(trainTime))
+
 
  var trainArrival = $("<td>").text("needs func ")
  var trainMinutesAway = $("<td>").text("needs func")
 
- tr.append(trainDataName).append(trainDataDest).append(trainDataTime).append(trainArrival).append(trainMinutesAway)
+ tr.append(trainDataName).append(trainDataDest).append(trainDataFreq).append(trainArrival).append(trainMinutesAway)
  $("#table-body").append(tr)
 
 
