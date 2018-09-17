@@ -8,6 +8,7 @@ var config = {
   messagingSenderId: "847478198978"
 };
 firebase.initializeApp(config);
+var database = firebase.database();
 
 $("#submit").on("click", function(event) {
  // Prevent form from submitting
@@ -35,7 +36,7 @@ console.log(trainFreq);
  };
 
  // Uploads employee data to the database
-//  database.ref().push(newEmp);
+ database.ref().push(newTrain);
 
  // Logs everything to console
  console.log(newTrain.name);
