@@ -8,7 +8,9 @@ var config = {
   messagingSenderId: "847478198978"
 };
 firebase.initializeApp(config);
-var database = firebase.database();
+var dataRef = firebase.database();
+
+
 
 $("#submit").on("click", function(event) {
  // Prevent form from submitting
@@ -36,7 +38,7 @@ console.log(trainFreq);
  };
 
  // Uploads employee data to the database
- database.ref().push(newTrain);
+ dataRef.ref().push(newTrain);
 
  // Logs everything to console
  console.log(newTrain.name);
@@ -52,20 +54,29 @@ console.log(trainFreq);
  $("#time-input").val("");
  $("#freq-input").val("");
 
+});
+
+
+dataRef.ref().on("child_added", function(childSnapshot) {
+ // Logs everything to console
+ console.log("child snapshot")
+ console.log(childSnapshot.val().name);
+ console.log(childSnapshot.val().dest);
+ console.log(childSnapshot.val().time);
+ console.log(childSnapshot.val().freq);
 
 
 //create table tow, and add train values
  var tr = $("<tr>")
- var trainDataName = $("<td>").text(newTrain.name)
- var trainDataDest = $("<td>").text(newTrain.dest)
- var trainDataTime = $("<td>").text(newTrain.time)
+ var trainDataName = $("<td>").text(childSnapshot.val().name)
+ var trainDataDest = $("<td>").text(childSnapshot.val().dest)
+ var trainDataTime = $("<td>").text(childSnapshot.val().time)
 
  var trainArrival = $("<td>").text("needs func ")
  var trainMinutesAway = $("<td>").text("needs func")
 
  tr.append(trainDataName).append(trainDataDest).append(trainDataTime).append(trainArrival).append(trainMinutesAway)
  $("#table-body").append(tr)
+
+
 });
-
-
-
