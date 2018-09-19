@@ -96,11 +96,11 @@ console.log("CURRENT TIME: " + format(currentTime, "HH:mm"));
       console.log("DIFFERENCE IN TIME: " + diffTime);
 
       // Time apart (remainder)
-      var tRemainder = diffTime % trainDataFreq;
+      var tRemainder = diffTime % trainDataFreq.text();
       console.log(tRemainder);
 
         // Minute Until Train
-        var tMinutesTillTrain = trainDataFreq - tRemainder;
+        var tMinutesTillTrain = trainDataFreq.text() - tRemainder;
         console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
   
           // Next Train
