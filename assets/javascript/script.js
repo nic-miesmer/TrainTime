@@ -99,8 +99,14 @@ console.log("CURRENT TIME: " + format(currentTime, "HH:mm"));
       var tRemainder = diffTime % trainDataFreq;
       console.log(tRemainder);
 
-
-
+        // Minute Until Train
+        var tMinutesTillTrain = trainDataFreq - tRemainder;
+        console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+  
+          // Next Train
+          var nextTrain = dateFns.addMinutes(new Date(), tMinutesTillTrain);
+          console.log("ARRIVAL TIME: " + format(nextTrain, "hh:mm"));
+    
 
 
       // console.log('Train Data Time unformatted', trainDataTime.text())
@@ -120,7 +126,7 @@ console.log("CURRENT TIME: " + format(currentTime, "HH:mm"));
  var trainArrival = $("<td>").text("needs func ")
  var trainMinutesAway = $("<td>").text("needs func")
 
- tr.append(trainDataName).append(trainDataDest).append(trainDataFreq).append(trainArrival).append(trainMinutesAway)
+ tr.append(trainDataName).append(trainDataDest).append(trainDataFreq).append(nextTrain).append(tRemainder)
  $("#table-body").append(tr)
 
 
