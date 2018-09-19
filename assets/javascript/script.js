@@ -73,6 +73,16 @@ dataRef.ref().on("child_added", function(childSnapshot) {
  var trainDataFreq = $("<td>").text(childSnapshot.val().freq)
 
 
+ var format = dateFns.format;
+ var brokenOut = trainDataTime.text().split(':')
+ var safeDate = dateFns.setHours(dateFns.setMinutes(new Date(), brokenOut[1]), brokenOut[0])
+
+
+
+// Current Time
+var currentTime = new Date();
+console.log("CURRENT TIME: " + format(currentTime, "HH:mm"));
+
 // Calculate Next Train
 
 
@@ -81,11 +91,17 @@ dataRef.ref().on("child_added", function(childSnapshot) {
 
 
 //Calculate minutes till next train.
+      // Difference between the times
+      var diffTime = dateFns.differenceInMinutes(currentTime, safeDate);
+      console.log("DIFFERENCE IN TIME: " + diffTime);
 
- var firstTime = dateFns.setHours(dateFns.setMinutes(new Date(), 30), 03);
-      var format = dateFns.format;
-      var brokenOut = trainDataTime.text().split(':')
-      var safeDate = dateFns.setHours(dateFns.setMinutes(new Date(), brokenOut[1]), brokenOut[0])
+      // Time apart (remainder)
+      var tRemainder = diffTime % trainDataFreq;
+      console.log(tRemainder);
+
+
+
+
 
       // console.log('Train Data Time unformatted', trainDataTime.text())
       // console.log('Time Formatted Train Data', format(trainDataTime.text(), 'HH:mm'))
@@ -94,9 +110,6 @@ dataRef.ref().on("child_added", function(childSnapshot) {
       // var firstTimeConverted = format(dateFns.subYears(firstTime, 1), 'HH:mm');
       // console.log(firstTimeConverted);
 
-      // Current Time
-      var currentTime = new Date();
-      console.log("CURRENT TIME: " + format(currentTime, "HH:mm"));
 
       var trainTime = new Date();
 
