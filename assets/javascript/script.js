@@ -29,7 +29,7 @@ console.log(trainTime);
 console.log(trainFreq);
 
 
- // Creates local "temporary" object for holding employee data
+ // Creates local "temporary" object for holding train data
  var newTrain = {
    name: trainName,
    dest: trainDest,
@@ -37,7 +37,7 @@ console.log(trainFreq);
    freq: trainFreq
  };
 
- // Uploads employee data to the database
+ // Uploads Train data to the database
  dataRef.ref().push(newTrain);
 
  // Logs everything to console
@@ -46,7 +46,6 @@ console.log(trainFreq);
  console.log(newTrain.time);
  console.log(newTrain.freq);
 
-//  alert("Employee successfully added");
 
  // Clears all of the text-boxes
  $("#name-input").val("");
@@ -74,26 +73,35 @@ dataRef.ref().on("child_added", function(childSnapshot) {
  var trainDataFreq = $("<td>").text(childSnapshot.val().freq)
 
 
-//Next Train
-//first train time
+// Calculate Next Train
 
 
 
-//  var firstTime = dateFns.setHours(dateFns.setMinutes(new Date(), 30), 03);
-//       var format = dateFns.format
 
-//       console.log(format(firstTime, 'HH:mm'))
-//       // First Time (pushed back 1 year to make sure it comes before current time)
-//       var firstTimeConverted = format(dateFns.subYears(firstTime, 1), 'HH:mm');
-//       console.log(firstTimeConverted);
 
-//       // Current Time
-//       var currentTime = new Date();
-//       console.log("CURRENT TIME: " + format(currentTime, "hh:mm"));
 
-//       var trainTime = new Date();
-//       trainTime = trainDataTime;
-//       console.log("Train Time: " + format(trainTime))
+//Calculate minutes till next train.
+
+ var firstTime = dateFns.setHours(dateFns.setMinutes(new Date(), 30), 03);
+      var format = dateFns.format;
+      var brokenOut = trainDataTime.text().split(':')
+      var safeDate = dateFns.setHours(dateFns.setMinutes(new Date(), brokenOut[1]), brokenOut[0])
+
+      // console.log('Train Data Time unformatted', trainDataTime.text())
+      // console.log('Time Formatted Train Data', format(trainDataTime.text(), 'HH:mm'))
+      // console.log('Date Value of', format(new Date().valueOf(), 'MM/DD/YYYY'))
+      // First Time (pushed back 1 year to make sure it comes before current time)
+      // var firstTimeConverted = format(dateFns.subYears(firstTime, 1), 'HH:mm');
+      // console.log(firstTimeConverted);
+
+      // Current Time
+      var currentTime = new Date();
+      console.log("CURRENT TIME: " + format(currentTime, "HH:mm"));
+
+      var trainTime = new Date();
+
+      trainTime = format(safeDate, 'HH:mm');
+      console.log("Train Time: " + trainTime)
 
 
  var trainArrival = $("<td>").text("needs func ")
